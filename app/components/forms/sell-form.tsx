@@ -121,6 +121,7 @@ const SellForm = () => {
             }}
             onUploadError={(error: Error) => {
               toast.error("Something went wrong, try again");
+              console.log(error);
             }}
           />
           {state?.errors?.["images"]?.[0] && (

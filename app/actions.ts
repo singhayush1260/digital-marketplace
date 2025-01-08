@@ -106,7 +106,7 @@ export async function updateUserSettings(prevState: any, formData: FormData) {
 
     return state;
   }
-  const data = await prisma.user.update({
+  await prisma.user.update({
     where: {
       id: user.id,
     },

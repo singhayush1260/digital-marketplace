@@ -9,7 +9,7 @@ export const ourFileRouter = {
   // Define as many FileRoutes as you like, each with a unique routeSlug
   imageUploader: f({ image: { maxFileSize: "4MB", maxFileCount: 5 } })
     // Set permissions and file types for this FileRoute
-    .middleware(async ({ req }) => {
+    .middleware(async () => {
       const { getUser } = getKindeServerSession();
       const user = await getUser();
 
@@ -21,9 +21,7 @@ export const ourFileRouter = {
     })
     .onUploadComplete(async ({ metadata, file }) => {
       // This code RUNS ON YOUR SERVER after upload
-      console.log("Upload complete for userId:", metadata.userId);
 
-      console.log("file url", file.url);
 
       // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
       return { uploadedBy: metadata.userId };
@@ -31,14 +29,7 @@ export const ourFileRouter = {
 
   productFileUpload: f({ "blob": { maxFileCount: 1 } })
     // Set permissions and file types for this FileRoute
-    .middleware(async ({ req }) => {
-      console.log("==================================")
-      console.log("==================================")
-      console.log("==================================")
-      console.log("zip upload middleware running")
-      console.log("==================================")
-      console.log("==================================")
-      console.log("==================================")
+    .middleware(async () => {
       
       const { getUser } = getKindeServerSession();
       const user = await getUser();

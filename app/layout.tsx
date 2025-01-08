@@ -25,7 +25,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <NextSSRPlugin  routerConfig={extractRouterConfig(ourFileRouter)}/>
         <AuthProvider>
-          {/* @ts-expect-error */}
+          {/* @ts-expect-error Server Components  */}
         <Navbar/>
         {children}
         <Toaster/>

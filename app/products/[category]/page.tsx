@@ -43,14 +43,15 @@ const getData = async (category: string) => {
 
   return data;
 };
-
+type paramsType = Promise<{ category: string }>;
 const ProductCategoryPage = async ({
   params,
 }: {
-  params: { category: string };
+  params:paramsType;
 }) => {
   noStore();
-  const data = await getData(params.category);
+  const {category}=await params;
+  const data = await getData(category);
 
   return (
     <section className="max-w-7xl mx-auto px-4 md:px-8">

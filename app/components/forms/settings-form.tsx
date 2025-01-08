@@ -54,7 +54,7 @@ const SettingsForm = ({ firstName, lastName, email }: iAppProps) => {
             name="email"
             type="email"
             disabled
-            defaultValue={"jan@alenix.de"}
+            defaultValue={email}
           />
         </div>
       </CardContent>

@@ -38,10 +38,12 @@ const getData = async (id: string) => {
   return data;
 };
 
-const ProductDetailsPage = async ({ params }: { params: { id: string } }) => {
+type paramsType = Promise<{ id: string }>;
+
+const ProductDetailsPage = async ({params}:{params:paramsType}) => {
  noStore();
- 
-  const data = await getData(params.id);
+ const {id}=await params;
+  const data = await getData(id);
 
   return (
     <section className="max-w-7xl mx-auto px-4 lg:px-8 lg:grid lg:grid-rows-1 lg:grid-cols-7 lg:gap-x-8 lg:gap-y-10 xl:gap-x-16 mt-2 md:mt-8  mb-20">

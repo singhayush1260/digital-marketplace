@@ -75,7 +75,6 @@ export const MenuBar = ({ editor }: { editor: Editor | null }) => {
 
 export const TipTapEditor = ({
   setJson,
-  json,
 }: {
   setJson: any;
   json: JSONContent | null;

@@ -103,7 +103,7 @@ export const ProductRow = ({ category }: iAppProps) => {
   return (
     <section className="mt-12">
       <Suspense fallback={<LoadingState />}>
-        {/* @ts-expect-error  Server Components*/}
+     
         <LoadRows category={category} />
       </Suspense>
     </section>
