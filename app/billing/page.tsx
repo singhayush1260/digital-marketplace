@@ -9,7 +9,7 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { prisma } from "../lib/db";
 import { createStripeAccoutnLink, getStripeDashboardLink } from "../actions";
 import { SubmitButton } from "../components/submit-buttons";
-import { unstable_noStore as noStore } from "next/cache";
+//import { unstable_noStore as noStore } from "next/cache";
 
 const getData = async (userId: string) => {
   const data = await prisma.user.findUnique({

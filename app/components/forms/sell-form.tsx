@@ -1,6 +1,5 @@
 "use client";
-import { useEffect, useState,useActionState } from "react";
-// import { useAc } from "react-dom";
+import { useEffect, useState, useActionState } from "react";
 import { SellProduct, type State } from "@/app/actions";
 import {
   CardContent,
@@ -13,24 +12,18 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { type JSONContent } from "@tiptap/react";
-import { redirect } from "next/navigation";
 import { toast } from "sonner";
 import SelectCategory from "../select-category";
 import { TipTapEditor } from "../editor";
 import { UploadDropzone } from "@/app/utils/uploadthing";
-import { Button } from "@/components/ui/button";
 import { SubmitButton } from "../submit-buttons";
 
-// import { Submitbutton } from "../SubmitButtons";
-
-export function SellForm() {
+const SellForm = () => {
   const initalState: State = { message: "", status: undefined };
   const [state, formAction] = useActionState(SellProduct, initalState);
   const [json, setJson] = useState<null | JSONContent>(null);
   const [images, setImages] = useState<null | string[]>(null);
   const [productFile, SetProductFile] = useState<null | string>(null);
-
-  console.log("state from sale form",state);
 
   useEffect(() => {
     if (state.status === "success") {
@@ -40,8 +33,6 @@ export function SellForm() {
     }
   }, [state]);
 
-  
- 
   return (
     <form action={formAction}>
       <CardHeader>
@@ -71,7 +62,7 @@ export function SellForm() {
             <p className="text-destructive">
               {state?.errors?.["category"]?.[0]}
             </p>
-          )} 
+          )}
         </div>
 
         <div className="flex flex-col gap-y-2">
@@ -110,8 +101,8 @@ export function SellForm() {
             value={JSON.stringify(json)}
           />
           <Label>Description</Label>
-          <TipTapEditor json={json} setJson={setJson}/>
-          
+          <TipTapEditor json={json} setJson={setJson} />
+
           {state?.errors?.["description"]?.[0] && (
             <p className="text-destructive">
               {state?.errors?.["description"]?.[0]}
@@ -141,15 +132,14 @@ export function SellForm() {
           <input type="hidden" name="productFile" value={productFile ?? ""} />
           <Label>Product File</Label>
           <UploadDropzone
-           endpoint="productFileUpload"
+            endpoint="productFileUpload"
             onClientUploadComplete={(res) => {
-              console.log("on zip upload complete",res)
+              console.log("on zip upload complete", res);
               SetProductFile(res[0].url);
               toast.success("Your Product file has been uplaoded!");
             }}
-           
             onUploadError={(error: Error) => {
-              console.log("on zip upload error",error)
+              console.log("on zip upload error", error);
               toast.error("Something went wrong, try again");
             }}
           />
@@ -161,9 +151,10 @@ export function SellForm() {
         </div>
       </CardContent>
       <CardFooter className="mt-5">
-        <SubmitButton title="Create your Product"/>
+        <SubmitButton title="Create your Product" />
       </CardFooter>
     </form>
   );
-}
+};
 
+export default SellForm;

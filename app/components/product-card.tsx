@@ -11,18 +11,24 @@ import Image from "next/image";
 import Link from "next/link";
 
 interface iAppProps {
-    images: string[];
-    name: string;
-    price: number;
-    smallDescription: string;
-    id: string;
-  }
+  images: string[];
+  name: string;
+  price: number;
+  smallDescription: string;
+  id: string;
+}
 
-const ProductCard=({images,name,price,smallDescription,id}:iAppProps)=>{
-  console.log("images",images)
-    return(
-  <div className="rounded-lg">
-   <Carousel className="w-full mx-auto">
+const ProductCard = ({
+  images,
+  name,
+  price,
+  smallDescription,
+  id,
+}: iAppProps) => {
+  console.log("images", images);
+  return (
+    <div className="rounded-lg">
+      <Carousel className="w-full mx-auto">
         <CarouselContent>
           {images.map((item, index) => (
             <CarouselItem key={index}>
@@ -52,12 +58,12 @@ const ProductCard=({images,name,price,smallDescription,id}:iAppProps)=>{
       <Button asChild className="w-full mt-5">
         <Link href={`/product/${id}`}>Learn More!</Link>
       </Button>
-  </div>  
-)
-}
+    </div>
+  );
+};
 export default ProductCard;
 
-export const LoadingProductCard=()=> {
+export const LoadingProductCard = () => {
   return (
     <div className="flex flex-col">
       <Skeleton className="w-full h-[230px]" />
@@ -69,4 +75,4 @@ export const LoadingProductCard=()=> {
       <Skeleton className="w-full h-10 mt-5" />
     </div>
   );
-}
+};
